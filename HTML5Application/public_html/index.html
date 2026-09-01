@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio · OctanoGT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <i class="bi bi-fuel-pump-fill brand-mark"></i>
+    <div class="brand-text"><span class="brand-title">OctanoGT</span><span class="brand-sub">Gestión de gasolinera</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-link active" href="index.html"><i class="bi bi-speedometer2"></i><span>Inicio</span></a>
+    <a class="nav-link" href="gestion.html"><i class="bi bi-grid-3x3-gap-fill"></i><span>Gestión</span></a>
+    <p class="nav-group-label">Personal</p>
+    <a class="nav-link" href="usuarios.html"><i class="bi bi-people-fill"></i><span>Usuarios</span></a>
+    <a class="nav-link" href="trabajadores.html"><i class="bi bi-person-badge-fill"></i><span>Trabajadores</span></a>
+    <a class="nav-link" href="asistencia.html"><i class="bi bi-calendar2-check-fill"></i><span>Asistencia</span></a>
+    <p class="nav-group-label">Catálogo</p>
+    <a class="nav-link" href="categorias.html"><i class="bi bi-tags-fill"></i><span>Categorías</span></a>
+    <a class="nav-link" href="productos.html"><i class="bi bi-fuel-pump-fill"></i><span>Productos y combustibles</span></a>
+    <a class="nav-link" href="inventario.html"><i class="bi bi-boxes"></i><span>Inventario</span></a>
+    <a class="nav-link" href="movimientos.html"><i class="bi bi-arrow-left-right"></i><span>Movimientos</span></a>
+    <p class="nav-group-label">Comercial</p>
+    <a class="nav-link" href="clientes.html"><i class="bi bi-person-lines-fill"></i><span>Clientes</span></a>
+    <a class="nav-link" href="ventas.html"><i class="bi bi-cart-check-fill"></i><span>Ventas</span></a>
+    <a class="nav-link" href="historial-ventas.html"><i class="bi bi-clock-history"></i><span>Historial de ventas</span></a>
+    <p class="nav-group-label">Análisis</p>
+    <a class="nav-link" href="reportes.html"><i class="bi bi-file-earmark-bar-graph-fill"></i><span>Reportes</span></a>
+    <a class="nav-link" href="metricas.html"><i class="bi bi-graph-up-arrow"></i><span>Métricas</span></a>
+    <p class="nav-group-label">General</p>
+    <a class="nav-link" href="publicidad.html"><i class="bi bi-megaphone-fill"></i><span>Publicidad</span></a>
+    <a class="nav-link" href="contacto.html"><i class="bi bi-envelope-fill"></i><span>Contacto</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="nav-link logout" href="login.html"><i class="bi bi-box-arrow-right"></i><span>Cerrar sesión</span></a>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="main-column">
+
+  <header class="topbar">
+    <button class="btn-icon d-lg-none" id="sidebarToggle" aria-label="Abrir menú"><i class="bi bi-list"></i></button>
+    <div class="topbar-heading">
+      <h1>Inicio</h1>
+      <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Dashboard</li><li class="breadcrumb-item active" aria-current="page">Inicio</li></ol></nav>
+    </div>
+    <div class="topbar-actions">
+      <span class="topbar-date d-none d-md-inline-flex"><i class="bi bi-calendar3"></i> <span id="todayDate"></span></span>
+      <div class="dropdown">
+        <button class="user-chip" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="avatar">MR</span>
+          <span class="user-meta d-none d-sm-flex">
+            <strong>Marcos Ramírez</strong>
+            <small>Administrador</small>
+          </span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi perfil</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Preferencias</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <main class="main-content">
+
+    <div class="page-intro">
+      <div>
+        <h2>Hola, Marcos</h2>
+        <p class="text-muted">Este es el resumen de la operación de hoy en la estación.</p>
+      </div>
+      <div class="quick-actions">
+        <a href="ventas.html" class="btn btn-brand"><i class="bi bi-plus-lg me-1"></i>Nueva venta</a>
+        <a href="asistencia.html" class="btn btn-outline-brand"><i class="bi bi-calendar2-check me-1"></i>Registrar asistencia</a>
+      </div>
+    </div>
+
+    <div class="row g-3 kpi-row">
+      <div class="col-6 col-lg-3">
+        <div class="kpi-card kpi-amber">
+          <i class="bi bi-cash-stack"></i>
+          <div><span class="kpi-value">S/ 4,820</span><span class="kpi-label">Ventas del día</span></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="kpi-card kpi-teal">
+          <i class="bi bi-receipt"></i>
+          <div><span class="kpi-value">57</span><span class="kpi-label">Ventas registradas</span></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="kpi-card kpi-blue">
+          <i class="bi bi-fuel-pump"></i>
+          <div><span class="kpi-value">Gasohol 90</span><span class="kpi-label">Mayor demanda</span></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="kpi-card kpi-red">
+          <i class="bi bi-exclamation-triangle"></i>
+          <div><span class="kpi-value">3</span><span class="kpi-label">Productos con stock bajo</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+      <div class="col-lg-8">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Actividad reciente</h3>
+            <span class="text-muted small" id="todayDate2"></span>
+          </div>
+          <ul class="activity-list">
+            <li><i class="bi bi-cart-check text-amber"></i><span>Venta #1057 registrada por <strong>Lucía Fernández</strong> — S/ 180.00</span><time>10:42</time></li>
+            <li><i class="bi bi-person-check text-teal"></i><span><strong>Renzo Quispe</strong> registró su ingreso de turno</span><time>10:05</time></li>
+            <li><i class="bi bi-box-seam text-blue"></i><span>Movimiento de inventario: ingreso de 500 gal. de Diésel B5</span><time>09:30</time></li>
+            <li><i class="bi bi-exclamation-circle text-red"></i><span>Stock bajo detectado en <strong>Aditivo Premium 250ml</strong></span><time>08:55</time></li>
+            <li><i class="bi bi-cart-check text-amber"></i><span>Venta #1056 registrada por <strong>Jorge Salas</strong> — S/ 95.50</span><time>08:20</time></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="panel">
+          <div class="panel-head"><h3>Trabajadores presentes</h3></div>
+          <ul class="worker-list">
+            <li><span class="avatar avatar-sm">RQ</span><div><strong>Renzo Quispe</strong><small>Despachador · En turno</small></div><span class="status-dot dot-green"></span></li>
+            <li><span class="avatar avatar-sm">LF</span><div><strong>Lucía Fernández</strong><small>Cajera · En turno</small></div><span class="status-dot dot-green"></span></li>
+            <li><span class="avatar avatar-sm">JS</span><div><strong>Jorge Salas</strong><small>Encargado de inventario</small></div><span class="status-dot dot-amber"></span></li>
+            <li><span class="avatar avatar-sm">MP</span><div><strong>Milagros Paredes</strong><small>Cajera · Tardanza</small></div><span class="status-dot dot-red"></span></li>
+          </ul>
+          <a href="asistencia.html" class="link-more">Ver control de asistencia <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+      <div class="col-12">
+        <div class="panel">
+          <div class="panel-head"><h3>Accesos rápidos</h3></div>
+          <div class="row g-3">
+            <div class="col-6 col-md-3"><a href="ventas.html" class="shortcut-tile"><i class="bi bi-cart-check"></i>Registrar venta</a></div>
+            <div class="col-6 col-md-3"><a href="inventario.html" class="shortcut-tile"><i class="bi bi-boxes"></i>Ver inventario</a></div>
+            <div class="col-6 col-md-3"><a href="trabajadores.html" class="shortcut-tile"><i class="bi bi-person-badge"></i>Trabajadores</a></div>
+            <div class="col-6 col-md-3"><a href="reportes.html" class="shortcut-tile"><i class="bi bi-file-earmark-bar-graph"></i>Reportes</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <footer class="app-footer">
+    <span>© 2026 OctanoGT — Sistema de Gestión de Ventas de Combustible y Asistencia de Trabajadores</span>
+    <span class="text-muted">Avance 1 · Prototipo visual (HTML, CSS, Bootstrap 5)</span>
+  </footer>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

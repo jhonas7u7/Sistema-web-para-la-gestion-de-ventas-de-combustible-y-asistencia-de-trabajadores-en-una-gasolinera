@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de inventario · OctanoGT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <i class="bi bi-fuel-pump-fill brand-mark"></i>
+    <div class="brand-text"><span class="brand-title">OctanoGT</span><span class="brand-sub">Gestión de gasolinera</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-link" href="index.html"><i class="bi bi-speedometer2"></i><span>Inicio</span></a>
+    <a class="nav-link" href="gestion.html"><i class="bi bi-grid-3x3-gap-fill"></i><span>Gestión</span></a>
+    <p class="nav-group-label">Personal</p>
+    <a class="nav-link" href="usuarios.html"><i class="bi bi-people-fill"></i><span>Usuarios</span></a>
+    <a class="nav-link" href="trabajadores.html"><i class="bi bi-person-badge-fill"></i><span>Trabajadores</span></a>
+    <a class="nav-link" href="asistencia.html"><i class="bi bi-calendar2-check-fill"></i><span>Asistencia</span></a>
+    <p class="nav-group-label">Catálogo</p>
+    <a class="nav-link" href="categorias.html"><i class="bi bi-tags-fill"></i><span>Categorías</span></a>
+    <a class="nav-link" href="productos.html"><i class="bi bi-fuel-pump-fill"></i><span>Productos y combustibles</span></a>
+    <a class="nav-link active" href="inventario.html"><i class="bi bi-boxes"></i><span>Inventario</span></a>
+    <a class="nav-link" href="movimientos.html"><i class="bi bi-arrow-left-right"></i><span>Movimientos</span></a>
+    <p class="nav-group-label">Comercial</p>
+    <a class="nav-link" href="clientes.html"><i class="bi bi-person-lines-fill"></i><span>Clientes</span></a>
+    <a class="nav-link" href="ventas.html"><i class="bi bi-cart-check-fill"></i><span>Ventas</span></a>
+    <a class="nav-link" href="historial-ventas.html"><i class="bi bi-clock-history"></i><span>Historial de ventas</span></a>
+    <p class="nav-group-label">Análisis</p>
+    <a class="nav-link" href="reportes.html"><i class="bi bi-file-earmark-bar-graph-fill"></i><span>Reportes</span></a>
+    <a class="nav-link" href="metricas.html"><i class="bi bi-graph-up-arrow"></i><span>Métricas</span></a>
+    <p class="nav-group-label">General</p>
+    <a class="nav-link" href="publicidad.html"><i class="bi bi-megaphone-fill"></i><span>Publicidad</span></a>
+    <a class="nav-link" href="contacto.html"><i class="bi bi-envelope-fill"></i><span>Contacto</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="nav-link logout" href="login.html"><i class="bi bi-box-arrow-right"></i><span>Cerrar sesión</span></a>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="main-column">
+
+  <header class="topbar">
+    <button class="btn-icon d-lg-none" id="sidebarToggle" aria-label="Abrir menú"><i class="bi bi-list"></i></button>
+    <div class="topbar-heading">
+      <h1>Control de inventario</h1>
+      <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Gestión</li><li class="breadcrumb-item active" aria-current="page">Inventario</li></ol></nav>
+    </div>
+    <div class="topbar-actions">
+      <span class="topbar-date d-none d-md-inline-flex"><i class="bi bi-calendar3"></i> <span id="todayDate"></span></span>
+      <div class="dropdown">
+        <button class="user-chip" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="avatar">MR</span>
+          <span class="user-meta d-none d-sm-flex">
+            <strong>Marcos Ramírez</strong>
+            <small>Administrador</small>
+          </span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi perfil</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Preferencias</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <main class="main-content">
+
+    <div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+      <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+      <div><strong>Alerta de stock:</strong> GLP y Aditivo Premium 250ml se encuentran en nivel crítico. Se recomienda generar un movimiento de ingreso.</div>
+    </div>
+
+    <div class="list-toolbar">
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" class="form-control" placeholder="Buscar producto o combustible..." data-table-search>
+      </div>
+      <div class="toolbar-actions">
+        <select class="form-select form-select-sm toolbar-filter">
+          <option>Todos los estados</option>
+          <option>Activo</option>
+          <option>Inactivo</option>
+        </select>
+        <button class="btn btn-brand btn-sm" data-bs-toggle="modal" data-bs-target="#modalMovInventario"><i class="bi bi-plus-lg me-1"></i>Registrar movimiento</button>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="table-responsive">
+        <table class="table table-modern align-middle">
+          <thead><tr><th>Producto / combustible</th><th>Stock disponible</th><th>Stock mínimo</th><th>Unidad de medida</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody><tr><td>Gasohol 90</td><td>4,200 gal</td><td>1,500 gal</td><td>gal</td><td><span class="badge badge-success">Normal</span></td><td><button class='btn btn-outline-brand btn-sm'><i class='bi bi-arrow-left-right me-1'></i>Movimiento</button></td></tr>
+<tr><td>Gasohol 95</td><td>3,800 gal</td><td>1,500 gal</td><td>gal</td><td><span class="badge badge-success">Normal</span></td><td><button class='btn btn-outline-brand btn-sm'><i class='bi bi-arrow-left-right me-1'></i>Movimiento</button></td></tr>
+<tr><td>Gasohol 97</td><td>1,200 gal</td><td>1,000 gal</td><td>gal</td><td><span class="badge badge-warning">Stock bajo</span></td><td><button class='btn btn-outline-brand btn-sm'><i class='bi bi-arrow-left-right me-1'></i>Movimiento</button></td></tr>
+<tr><td>Diésel B5</td><td>5,000 gal</td><td>2,000 gal</td><td>gal</td><td><span class="badge badge-success">Normal</span></td><td><button class='btn btn-outline-brand btn-sm'><i class='bi bi-arrow-left-right me-1'></i>Movimiento</button></td></tr>
+<tr><td>GLP</td><td>900 gal</td><td>1,000 gal</td><td>gal</td><td><span class="badge badge-danger">Stock crítico</span></td><td><button class='btn btn-outline-brand btn-sm'><i class='bi bi-arrow-left-right me-1'></i>Movimiento</button></td></tr>
+<tr><td>Aceite de motor 4T 1L</td><td>45 unid.</td><td>20 unid.</td><td>unid.</td><td><span class="badge badge-success">Normal</span></td><td><button class='btn btn-outline-brand btn-sm'><i class='bi bi-arrow-left-right me-1'></i>Movimiento</button></td></tr>
+<tr><td>Aditivo Premium 250ml</td><td>6 unid.</td><td>15 unid.</td><td>unid.</td><td><span class="badge badge-danger">Stock crítico</span></td><td><button class='btn btn-outline-brand btn-sm'><i class='bi bi-arrow-left-right me-1'></i>Movimiento</button></td></tr>
+</tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalMovInventario" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header"><h5 class="modal-title"><i class="bi bi-arrow-left-right me-2"></i>Registrar movimiento</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body">
+            <form class="row g-3">
+              <div class="col-12"><label class="form-label">Producto o combustible</label><select class="form-select"><option>Gasohol 90</option><option>GLP</option><option>Aditivo Premium 250ml</option></select></div>
+              <div class="col-md-6"><label class="form-label">Tipo de movimiento</label><select class="form-select"><option>Entrada</option><option>Salida</option><option>Ajuste</option></select></div>
+              <div class="col-md-6"><label class="form-label">Cantidad</label><input type="number" class="form-control" placeholder="0"></div>
+              <div class="col-12"><label class="form-label">Observación</label><textarea class="form-control" rows="2" placeholder="Motivo del movimiento"></textarea></div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-brand" data-bs-dismiss="modal">Guardar movimiento</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <footer class="app-footer">
+    <span>© 2026 OctanoGT — Sistema de Gestión de Ventas de Combustible y Asistencia de Trabajadores</span>
+    <span class="text-muted">Avance 1 · Prototipo visual (HTML, CSS, Bootstrap 5)</span>
+  </footer>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
