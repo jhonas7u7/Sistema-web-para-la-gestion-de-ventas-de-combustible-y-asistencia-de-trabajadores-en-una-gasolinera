@@ -1,13 +1,5 @@
-/* ==========================================================================
-   OctanoGT — script.js
-   Funcionalidades de interacción del frontend (sin backend).
-   ========================================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
-
-  /* ------------------------------------------------------------ */
-  /* Sidebar responsive (off-canvas en pantallas pequeñas)          */
-  /* ------------------------------------------------------------ */
+    
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("sidebarOverlay");
   const toggleBtn = document.getElementById("sidebarToggle");
@@ -31,16 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (overlay) {
     overlay.addEventListener("click", closeSidebar);
   }
-  // Cierra el sidebar al navegar (en móvil) al hacer clic en un enlace
   document.querySelectorAll(".sidebar .nav-link").forEach(function (link) {
     link.addEventListener("click", function () {
       if (window.innerWidth < 992) closeSidebar();
     });
   });
-
-  /* ------------------------------------------------------------ */
-  /* Fecha actual en la barra superior y en el dashboard             */
-  /* ------------------------------------------------------------ */
+  
   const today = new Date();
   const options = { weekday: "long", day: "numeric", month: "long", year: "numeric" };
   const formatted = today.toLocaleDateString("es-PE", options);
@@ -49,9 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (dateEl) dateEl.textContent = formatted;
   if (dateEl2) dateEl2.textContent = formatted;
 
-  /* ------------------------------------------------------------ */
-  /* Buscador simple en tablas (filtra filas visualmente)            */
-  /* ------------------------------------------------------------ */
   document.querySelectorAll("[data-table-search]").forEach(function (input) {
     input.addEventListener("keyup", function () {
       const term = input.value.trim().toLowerCase();
@@ -65,9 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  /* ------------------------------------------------------------ */
-  /* Validación visual simple del formulario de login                */
-  /* ------------------------------------------------------------ */
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
     loginForm.addEventListener("submit", function (e) {
@@ -96,13 +78,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (valid) {
-        // Simulación de autenticación: redirige al dashboard.
         window.location.href = "index.html";
       }
     });
   }
 
-  /* Mostrar / ocultar contraseña en el login */
   const togglePass = document.getElementById("togglePass");
   if (togglePass) {
     togglePass.addEventListener("click", function () {
@@ -118,9 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* ------------------------------------------------------------ */
-  /* Formularios de contacto / gestión: evitar recarga real          */
-  /* ------------------------------------------------------------ */
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {

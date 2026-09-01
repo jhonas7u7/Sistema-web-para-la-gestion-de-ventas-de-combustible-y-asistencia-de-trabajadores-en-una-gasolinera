@@ -42,7 +42,6 @@ h1, h2, h3, h4, h5, .brand-title {
 
 a { text-decoration: none; }
 
-/*Layout*/
 .app-shell {
   display: flex;
   min-height: 100vh;
@@ -76,7 +75,6 @@ a { text-decoration: none; }
   background: var(--surface-card);
 }
 
-/*Sidebar*/
 .sidebar {
   width: var(--sidebar-w);
   background: linear-gradient(180deg, var(--navy-950), var(--navy-900) 60%, var(--navy-800));
@@ -165,7 +163,6 @@ a { text-decoration: none; }
   z-index: 1030;
 }
 
-/*Topbar*/
 .topbar {
   background: var(--surface-card);
   border-bottom: 1px solid var(--line);
@@ -247,7 +244,6 @@ a { text-decoration: none; }
 .user-meta strong { font-size: 13px; }
 .user-meta small { color: var(--muted); font-size: 11.5px; }
 
-/*Pagina inicio*/
 .page-intro {
   display: flex;
   justify-content: space-between;
@@ -284,7 +280,6 @@ a { text-decoration: none; }
   color: #26160a;
 }
 
-/*Carta cifras*/
 .kpi-card {
   background: var(--surface-card);
   border: 1px solid var(--line);
@@ -311,7 +306,6 @@ a { text-decoration: none; }
 .kpi-red { border-left-color: var(--red); }
 .kpi-red i { color: var(--red); }
 
-/*Paneles*/
 .panel {
   background: var(--surface-card);
   border: 1px solid var(--line);
@@ -394,7 +388,6 @@ a { text-decoration: none; }
 .shortcut-tile i { font-size: 22px; color: var(--amber-dark); }
 .shortcut-tile:hover { border-color: var(--amber); color: var(--ink); }
 
-/*Gestión*/
 .hub-card {
   background: var(--surface-card);
   border: 1px solid var(--line);
@@ -417,7 +410,6 @@ a { text-decoration: none; }
 .hub-card h4 { font-size: 15.5px; margin: 0; }
 .hub-card p { font-size: 13px; color: var(--muted); flex: 1; }
 
-/*Tablas*/
 .list-toolbar {
   display: flex;
   justify-content: space-between;
@@ -490,7 +482,6 @@ a { text-decoration: none; }
 .badge-danger { background: rgba(208,72,63,.14); color: var(--red); }
 .badge-info { background: rgba(47,111,168,.14); color: var(--blue); }
 
-/*Carro*/
 .cart-list li {
   display: flex;
   justify-content: space-between;
@@ -504,7 +495,6 @@ a { text-decoration: none; }
 .cart-summary { margin-top: 12px; font-size: 13.5px; }
 .cart-total { font-size: 17px; font-weight: 700; font-family: var(--font-display); margin-top: 6px; }
 
-/*Reportes*/
 .report-card {
   display: flex;
   gap: 16px;
@@ -526,7 +516,6 @@ a { text-decoration: none; }
 .report-body p { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
 .report-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
-/*Métricas*/
 .chart-placeholder { padding: 10px 4px; }
 
 .bar-chart {
@@ -569,8 +558,6 @@ a { text-decoration: none; }
 }
 .line-chart-placeholder i { font-size: 28px; color: var(--blue); }
 
-/*Publicidad*/
-
 .promo-card {
   background: var(--surface-card);
   border: 1px solid var(--line);
@@ -582,7 +569,6 @@ a { text-decoration: none; }
 .promo-card h4 { font-size: 15px; margin-bottom: 6px; }
 .promo-card p { font-size: 13px; color: var(--muted); margin: 0; }
 
-/*Login*/
 .login-body {
   background: var(--navy-950);
   min-height: 100vh;
@@ -637,7 +623,6 @@ a { text-decoration: none; }
 
 .link-recover { color: var(--amber-dark); font-weight: 600; }
 
-/*Responsive*/
 
 @media (max-width: 991px) {
   .login-visual { display: none; }
