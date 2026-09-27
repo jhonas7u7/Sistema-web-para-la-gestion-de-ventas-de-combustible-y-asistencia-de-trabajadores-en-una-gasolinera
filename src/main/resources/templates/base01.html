@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página 1</title>
+</head>
+<body>
+
+<h1>📄 PÁGINA 1</h1>
+
+<!-- EJEMPLO 1: Fragment SIN parámetros -->
+<h2>1. Fragment footer (sin parámetros)</h2>
+<div th:replace="~{fragments/comunes :: footer}"></div>
+
+<!-- EJEMPLO 2: Fragment CON 1 parámetro -->
+<h2>2. Fragment saludo (1 parámetro)</h2>
+<div th:replace="~{fragments/comunes :: saludo(nombre='Ana')}"></div>
+
+<!-- EJEMPLO 3: Fragment CON 2 parámetros -->
+<h2>3. Fragment tarjeta (2 parámetros)</h2>
+<div th:replace="~{fragments/comunes :: tarjeta(titulo='Noticia', texto='Hoy aprendemos fragments')}"></div>
+
+<!-- EXPLICACIÓN CLARA -->
+<div style="background:yellow; padding:10px; margin-top:30px">
+    <strong>📌 LOS 3 CONCEPTOS:</strong><br/>
+    • <strong>Carpeta:</strong> templates/<br/>
+    • <strong>Archivo:</strong> comunes.html<br/>
+    • <strong>Bloque:</strong> footer, saludo, tarjeta<br/><br/>
+
+    <strong>📝 Sintaxis:</strong> th:replace="~{carpeta/archivo :: bloque(parametros)}"
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- FRAGMENT 1: SIN parámetros -->
+<div th:fragment="footer">
+    <hr/>
+    <p>© 2024 - Pie de página</p>
+</div>
+
+<!-- FRAGMENT 2: CON 1 parámetro -->
+<div th:fragment="saludo(nombre)">
+    <h3>¡Hola <span th:text="${nombre}"></span>!</h3>
+</div>
+
+<!-- FRAGMENT 3: CON 2 parámetros -->
+<div th:fragment="tarjeta(titulo, texto)">
+    <div style="border:1px solid black; padding:10px; margin:10px 0">
+        <h4 th:text="${titulo}"></h4>
+        <p th:text="${texto}"></p>
+    </div>
+</div>
+
+</body>
+</html>

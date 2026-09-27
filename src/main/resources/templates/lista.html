@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Personas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .mensaje {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .volver {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #007399;
+        }
+    </style>
+</head>
+<body>
+<h1>Lista de Personas Registradas</h1>
+
+<div class="mensaje" th:if="${personaActual}">
+    <strong>¡Persona agregada exitosamente!</strong><br/>
+    Nombre: <span th:text="${personaActual.nombre}"></span><br/>
+    Email: <span th:text="${personaActual.email}"></span><br/>
+    Edad: <span th:text="${personaActual.edad}"></span>
+</div>
+
+<h2>Personas registradas (Total: <span th:text="${personas.size()}"></span>)</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Edad</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="persona, iterStat : ${personas}">
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${persona.nombre}"></td>
+        <td th:text="${persona.email}"></td>
+        <td th:text="${persona.edad}"></td>
+    </tr>
+    <tr th:if="${personas.isEmpty()}">
+        <td colspan="4" style="text-align: center;">No hay personas registradas aún</td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/" class="volver">← Registrar nueva persona</a>
+</body>
+</html>
