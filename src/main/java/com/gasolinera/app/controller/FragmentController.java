@@ -15,12 +15,12 @@ public class FragmentController {
     public String mostrarGestion() {
         return "gestion";
     }
-
+    /*
     @GetMapping("/usuarios")
     public String mostrarUsuarios() {
         return "usuarios";
     }
-
+    */
     @GetMapping("/asistencia")
     public String mostrarAsistencia(){
         return "asistencia";
