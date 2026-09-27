@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-
+/*
 import com.example.demo.model.Persona;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,3 +34,4 @@ public class PersonaController {
         return "lista";
     }
 }
+ */

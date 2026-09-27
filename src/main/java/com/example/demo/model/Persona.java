@@ -1,5 +1,5 @@
 package com.example.demo.model;
-
+/*
 public class Persona {
     private String nombre;
     private String email;
@@ -39,3 +39,4 @@ public class Persona {
         this.edad = edad;
     }
 }
+ */
