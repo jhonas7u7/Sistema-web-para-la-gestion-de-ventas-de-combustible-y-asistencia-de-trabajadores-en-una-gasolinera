@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div class="row g-3 kpi-row mb-1">
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card kpi-amber"><i class="bi bi-cash-stack"></i>
+            <div><span class="kpi-value" th:text="${'S/ ' + #numbers.formatDecimal(totalVentas, 1, 2)}">S/ 0.00</span><span class="kpi-label">Ventas pagadas (total)</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card kpi-teal"><i class="bi bi-receipt"></i>
+            <div><span class="kpi-value" th:text="${cantidadVentas}">0</span><span class="kpi-label">Ventas registradas</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card kpi-blue"><i class="bi bi-person-badge"></i>
+            <div><span class="kpi-value" th:text="${presentesHoy}">0</span><span class="kpi-label">Trabajadores presentes hoy</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card kpi-red"><i class="bi bi-exclamation-triangle"></i>
+            <div><span class="kpi-value" th:text="${cantidadMovimientosStockBajo}">0</span><span class="kpi-label">Productos con stock bajo</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-muted mb-4">Selecciona un rango de fechas y genera el reporte que necesites. La generación de archivos (PDF/Excel) se implementará en un avance posterior.</p>
+      <div class="row g-3">
+
+        <div class="col-md-6">
+          <div class="report-card">
+            <div class="report-icon"><i class="bi bi-cash-coin"></i></div>
+            <div class="report-body">
+              <h4>Reporte de ventas</h4>
+              <p>Detalle de ventas por periodo, trabajador y método de pago.</p>
+              <div class="report-actions">
+                <input type="date" class="form-control form-control-sm">
+                <input type="date" class="form-control form-control-sm">
+                <a th:href="@{/ventas/historial}" class="btn btn-brand btn-sm"><i class="bi bi-eye me-1"></i>Ver ventas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="report-card">
+            <div class="report-icon"><i class="bi bi-boxes"></i></div>
+            <div class="report-body">
+              <h4>Reporte de inventario</h4>
+              <p>Existencias, movimientos y alertas de stock por periodo.</p>
+              <div class="report-actions">
+                <input type="date" class="form-control form-control-sm">
+                <input type="date" class="form-control form-control-sm">
+                <a th:href="@{/inventario}" class="btn btn-brand btn-sm"><i class="bi bi-eye me-1"></i>Ver inventario</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="report-card">
+            <div class="report-icon"><i class="bi bi-calendar2-check"></i></div>
+            <div class="report-body">
+              <h4>Reporte de asistencia</h4>
+              <p>Ingresos, salidas, tardanzas e inasistencias del personal.</p>
+              <div class="report-actions">
+                <input type="date" class="form-control form-control-sm">
+                <input type="date" class="form-control form-control-sm">
+                <a th:href="@{/asistencia}" class="btn btn-brand btn-sm"><i class="bi bi-eye me-1"></i>Ver asistencia</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="report-card">
+            <div class="report-icon"><i class="bi bi-person-badge"></i></div>
+            <div class="report-body">
+              <h4>Reporte de trabajadores</h4>
+              <p>Listado general y estado de los trabajadores registrados.</p>
+              <div class="report-actions">
+                <input type="date" class="form-control form-control-sm">
+                <input type="date" class="form-control form-control-sm">
+                <a th:href="@{/trabajadores}" class="btn btn-brand btn-sm"><i class="bi bi-eye me-1"></i>Ver trabajadores</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div class="panel form-panel">
+        <div class="panel-head">
+          <h3 th:text="'Venta ' + ${venta.numero}">Venta</h3>
+          <span class="badge" th:classappend="${venta.estado == 'Pagada'} ? 'badge-success' : 'badge-danger'" th:text="${venta.estado}">Estado</span>
+        </div>
+
+        <div class="detail-row"><strong>Fecha:</strong> <span th:text="${#temporals.format(venta.fecha, 'dd/MM/yyyy HH:mm')}">--</span></div>
+        <div class="detail-row"><strong>Cliente:</strong> <span th:text="${venta.clienteNombre}">--</span></div>
+        <div class="detail-row"><strong>Trabajador responsable:</strong> <span th:text="${venta.trabajadorNombre}">--</span></div>
+        <div class="detail-row"><strong>Método de pago:</strong> <span th:text="${venta.metodoPago}">--</span></div>
+
+        <ul class="cart-list mt-3">
+          <li th:each="d : ${venta.detalles}">
+            <div>
+              <strong th:text="${d.productoNombre}">Producto</strong>
+              <small th:text="${#numbers.formatDecimal(d.cantidad, 1, 2) + ' x S/ ' + #numbers.formatDecimal(d.precioUnitario, 1, 2)}">cant</small>
+            </div>
+            <span th:text="${'S/ ' + #numbers.formatDecimal(d.subtotal, 1, 2)}">S/ 0.00</span>
+          </li>
+        </ul>
+        <div class="cart-summary">
+          <div class="d-flex justify-content-between cart-total">
+            <span>Total</span>
+            <span th:text="${'S/ ' + #numbers.formatDecimal(venta.total, 1, 2)}">S/ 0.00</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <a th:href="@{/ventas/historial}" class="btn btn-outline-secondary">Volver al historial</a>
+        </div>
+      </div>
+
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

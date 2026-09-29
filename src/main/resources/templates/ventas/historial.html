@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div th:replace="~{fragments/layout :: alerts}"></div>
+
+      <div class="list-toolbar">
+        <div class="search-box">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control" placeholder="Buscar por N° de venta o cliente..." data-table-search>
+        </div>
+        <div class="toolbar-actions">
+          <a th:href="@{/ventas/nueva}" class="btn btn-brand btn-sm"><i class="bi bi-plus-lg me-1"></i>Nueva venta</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-responsive">
+          <table class="table table-modern align-middle">
+            <thead>
+              <tr><th>N° de venta</th><th>Fecha</th><th>Cliente</th><th>Trabajador</th><th>Total</th><th>Método de pago</th><th>Estado</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+              <tr th:each="v : ${ventas}">
+                <td th:text="${v.numero}">#1000</td>
+                <td th:text="${#temporals.format(v.fecha, 'dd/MM/yyyy HH:mm')}">01/01/2026 10:00</td>
+                <td th:text="${v.clienteNombre}">Cliente</td>
+                <td th:text="${v.trabajadorNombre}">Trabajador</td>
+                <td th:text="${'S/ ' + #numbers.formatDecimal(v.total, 1, 2)}">S/ 0.00</td>
+                <td th:text="${v.metodoPago}">Efectivo</td>
+                <td><span class="badge" th:classappend="${v.estado == 'Pagada'} ? 'badge-success' : 'badge-danger'" th:text="${v.estado}">Estado</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a th:href="@{/ventas/detalle/{id}(id=${v.id})}" class="btn-action" title="Ver detalle"><i class="bi bi-eye"></i></a>
+                    <a th:if="${v.estado == 'Pagada'}" th:href="@{/ventas/anular/{id}(id=${v.id})}" class="btn-action btn-action-danger" title="Anular venta"
+                       onclick="return confirm('¿Anular esta venta?');"><i class="bi bi-x-circle"></i></a>
+                  </div>
+                </td>
+              </tr>
+              <tr th:if="${#lists.isEmpty(ventas)}">
+                <td colspan="8" class="text-center text-muted py-4">No hay ventas registradas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

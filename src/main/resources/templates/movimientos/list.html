@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div th:replace="~{fragments/layout :: alerts}"></div>
+
+      <div class="list-toolbar">
+        <div class="search-box">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control" placeholder="Buscar movimiento..." data-table-search>
+        </div>
+        <div class="toolbar-actions">
+          <a th:href="@{/movimientos/nuevo}" class="btn btn-brand btn-sm"><i class="bi bi-plus-lg me-1"></i>Nuevo movimiento</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-responsive">
+          <table class="table table-modern align-middle">
+            <thead>
+              <tr><th>Fecha</th><th>Producto</th><th>Tipo</th><th>Cantidad</th><th>Responsable</th><th>Observación</th></tr>
+            </thead>
+            <tbody>
+              <tr th:each="m : ${movimientos}">
+                <td th:text="${#temporals.format(m.fecha, 'dd/MM/yyyy HH:mm')}">01/01/2026 09:00</td>
+                <td th:text="${m.productoNombre}">Producto</td>
+                <td>
+                  <span class="badge"
+                        th:classappend="${m.tipo == 'Entrada'} ? 'badge-success' : (${m.tipo == 'Salida'} ? 'badge-secondary' : 'badge-warning')"
+                        th:text="${m.tipo}">Tipo</span>
+                </td>
+                <td th:text="${#numbers.formatDecimal(m.cantidad, 1, 2)}">0</td>
+                <td th:text="${m.responsable}">Responsable</td>
+                <td th:text="${m.observacion}">Observación</td>
+              </tr>
+              <tr th:if="${#lists.isEmpty(movimientos)}">
+                <td colspan="6" class="text-center text-muted py-4">No hay movimientos registrados.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div th:replace="~{fragments/layout :: alerts}"></div>
+
+      <p class="text-muted mb-4">Selecciona el módulo administrativo que deseas gestionar.</p>
+      <div class="row g-3">
+
+        <div class="col-md-6 col-xl-4">
+          <div class="hub-card">
+            <div class="hub-icon"><i class="bi bi-people-fill"></i></div>
+            <h4>Usuarios</h4>
+            <p>Cuentas de acceso, roles y permisos del sistema.</p>
+            <a th:href="@{/usuarios}" class="btn btn-outline-brand btn-sm">Ingresar <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="hub-card">
+            <div class="hub-icon"><i class="bi bi-person-badge-fill"></i></div>
+            <h4>Trabajadores</h4>
+            <p>Datos del personal y su información laboral.</p>
+            <a th:href="@{/trabajadores}" class="btn btn-outline-brand btn-sm">Ingresar <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="hub-card">
+            <div class="hub-icon"><i class="bi bi-calendar2-check-fill"></i></div>
+            <h4>Asistencia</h4>
+            <p>Registro de ingresos, salidas y turnos.</p>
+            <a th:href="@{/asistencia}" class="btn btn-outline-brand btn-sm">Ingresar <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="hub-card">
+            <div class="hub-icon"><i class="bi bi-tags-fill"></i></div>
+            <h4>Categorías</h4>
+            <p>Clasificación de combustibles, productos y servicios.</p>
+            <a th:href="@{/categorias}" class="btn btn-outline-brand btn-sm">Ingresar <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="hub-card">
+            <div class="hub-icon"><i class="bi bi-fuel-pump-fill"></i></div>
+            <h4>Productos</h4>
+            <p>Combustibles, precios y catálogo general.</p>
+            <a th:href="@{/productos}" class="btn btn-outline-brand btn-sm">Ingresar <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="hub-card">
+            <div class="hub-icon"><i class="bi bi-boxes"></i></div>
+            <h4>Inventario</h4>
+            <p>Existencias, stock mínimo y movimientos.</p>
+            <a th:href="@{/inventario}" class="btn btn-outline-brand btn-sm">Ingresar <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="hub-card">
+            <div class="hub-icon"><i class="bi bi-person-lines-fill"></i></div>
+            <h4>Clientes</h4>
+            <p>Registro y consulta de clientes frecuentes.</p>
+            <a th:href="@{/clientes}" class="btn btn-outline-brand btn-sm">Ingresar <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

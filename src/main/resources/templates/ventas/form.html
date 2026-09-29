@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div th:replace="~{fragments/layout :: alerts}"></div>
+
+      <form th:action="@{/ventas/guardar}" th:object="${ventaForm}" method="post">
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <div class="panel">
+              <div class="panel-head"><h3>Nueva venta</h3></div>
+
+              <div class="row g-3 mb-2">
+                <div class="col-md-6">
+                  <label class="form-label">Cliente</label>
+                  <select class="form-select" th:field="*{clienteId}">
+                    <option th:each="c : ${clientes}" th:value="${c.id}" th:text="${c.nombre}">Cliente</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Trabajador responsable</label>
+                  <select class="form-select" th:field="*{trabajadorId}">
+                    <option th:each="t : ${trabajadores}" th:value="${t.id}" th:text="${t.nombreCompleto}">Trabajador</option>
+                  </select>
+                </div>
+              </div>
+
+              <label class="form-label">Productos</label>
+              <div class="table-responsive mb-2">
+                <table class="table table-modern align-middle">
+                  <thead><tr><th>Producto / combustible</th><th style="width:140px">Cantidad</th></tr></thead>
+                  <tbody>
+                    <tr th:each="item, itemStat : *{items}">
+                      <td>
+                        <select class="form-select form-select-sm" th:field="*{items[__${itemStat.index}__].productoId}">
+                          <option value="">— Ninguno —</option>
+                          <option th:each="p : ${productos}" th:value="${p.id}"
+                                  th:text="${p.nombre + ' — S/ ' + #numbers.formatDecimal(p.precio, 1, 2)}">Producto</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input type="number" step="0.01" min="0" class="form-control form-control-sm"
+                               th:field="*{items[__${itemStat.index}__].cantidad}" placeholder="0">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-muted small">Selecciona hasta 5 productos distintos por venta. Deja en "— Ninguno —" las filas que no vayas a usar.</p>
+
+              <label class="form-label">Método de pago</label>
+              <div class="btn-group w-100" role="group">
+                <input type="radio" class="btn-check" th:field="*{metodoPago}" value="Efectivo" id="pagoEfectivo">
+                <label class="btn btn-outline-brand" for="pagoEfectivo"><i class="bi bi-cash me-1"></i>Efectivo</label>
+                <input type="radio" class="btn-check" th:field="*{metodoPago}" value="Tarjeta" id="pagoTarjeta">
+                <label class="btn btn-outline-brand" for="pagoTarjeta"><i class="bi bi-credit-card me-1"></i>Tarjeta</label>
+                <input type="radio" class="btn-check" th:field="*{metodoPago}" value="Billetera digital" id="pagoDigital">
+                <label class="btn btn-outline-brand" for="pagoDigital"><i class="bi bi-phone me-1"></i>Billetera digital</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="panel">
+              <div class="panel-head"><h3>Resumen de venta</h3></div>
+              <p class="text-muted small">El subtotal y el total se calculan automáticamente al registrar la venta con los precios vigentes del catálogo de productos.</p>
+              <div class="d-grid gap-2 mt-3">
+                <button type="submit" class="btn btn-brand"><i class="bi bi-check2-circle me-1"></i>Registrar venta</button>
+                <a th:href="@{/ventas/historial}" class="btn btn-outline-secondary"><i class="bi bi-clock-history me-1"></i>Ver historial de ventas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

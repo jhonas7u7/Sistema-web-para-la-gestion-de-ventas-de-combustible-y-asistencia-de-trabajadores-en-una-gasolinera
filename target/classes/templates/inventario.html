@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div th:replace="~{fragments/layout :: alerts}"></div>
+
+      <div th:if="${cantidadAlertas > 0}" class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+        <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+        <div><strong th:text="${cantidadAlertas}">0</strong> producto(s) requieren atención por nivel de stock bajo o crítico. Registra un movimiento de ingreso desde el módulo de Movimientos.</div>
+      </div>
+
+      <div class="list-toolbar">
+        <div class="search-box">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control" placeholder="Buscar producto o combustible..." data-table-search>
+        </div>
+        <div class="toolbar-actions">
+          <a th:href="@{/movimientos/nuevo}" class="btn btn-brand btn-sm"><i class="bi bi-arrow-left-right me-1"></i>Registrar movimiento</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-responsive">
+          <table class="table table-modern align-middle">
+            <thead>
+              <tr><th>Producto / combustible</th><th>Stock disponible</th><th>Stock mínimo</th><th>Unidad de medida</th><th>Estado</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+              <tr th:each="p : ${productos}">
+                <td th:text="${p.nombre}">Producto</td>
+                <td th:text="${#numbers.formatDecimal(p.stock, 1, 2) + ' ' + p.unidadMedida}">0</td>
+                <td th:text="${#numbers.formatDecimal(p.stockMinimo, 1, 2) + ' ' + p.unidadMedida}">0</td>
+                <td th:text="${p.unidadMedida}">unid.</td>
+                <td>
+                  <span class="badge"
+                        th:classappend="${p.estadoInventario == 'Stock normal'} ? 'badge-success' : (${p.estadoInventario == 'Stock bajo'} ? 'badge-warning' : 'badge-danger')"
+                        th:text="${p.estadoInventario}">Estado</span>
+                </td>
+                <td><a th:href="@{/movimientos/nuevo}" class="btn btn-outline-brand btn-sm"><i class="bi bi-arrow-left-right me-1"></i>Movimiento</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div id="promoCarousel" class="carousel slide promo-carousel mb-4" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="promo-slide promo-1">
+              <div class="promo-text">
+                <span class="promo-tag">Promoción</span>
+                <h2>Descuento en Gasohol 95</h2>
+                <p>S/ 0.30 de descuento por galón pagando con billetera digital, todos los días de la semana.</p>
+                <a href="#" class="btn btn-brand">Ver condiciones</a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="promo-slide promo-2">
+              <div class="promo-text">
+                <span class="promo-tag">Servicio</span>
+                <h2>Atención rápida y segura</h2>
+                <p>Nuestro personal certificado te atiende en menos de 5 minutos, con todos los protocolos de seguridad.</p>
+                <a href="#" class="btn btn-brand">Conoce nuestro servicio</a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="promo-slide promo-3">
+              <div class="promo-text">
+                <span class="promo-tag">Programa de fidelidad</span>
+                <h2>Acumula puntos OctanoGT</h2>
+                <p>Cada compra suma puntos canjeables por lubricantes, accesorios y servicios de tienda.</p>
+                <a href="#" class="btn btn-brand">Inscríbete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="promo-card">
+            <i class="bi bi-fuel-pump"></i>
+            <h4>Combustibles de calidad</h4>
+            <p>Gasohol 90, 95, 97, Diésel B5 y GLP con control de calidad constante.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="promo-card">
+            <i class="bi bi-shield-check"></i>
+            <h4>Seguridad garantizada</h4>
+            <p>Personal capacitado en protocolos de seguridad y manejo de hidrocarburos.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="promo-card">
+            <i class="bi bi-cup-straw"></i>
+            <h4>Tienda de conveniencia</h4>
+            <p>Snacks, bebidas y lubricantes disponibles durante todo el horario de atención.</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

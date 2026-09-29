@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div th:replace="~{fragments/layout :: alerts}"></div>
+
+      <div class="page-intro">
+        <div>
+          <h2>Hola, Marcos</h2>
+          <p class="text-muted">Este es el resumen de la operación en la estación.</p>
+        </div>
+        <div class="quick-actions">
+          <a th:href="@{/ventas/nueva}" class="btn btn-brand"><i class="bi bi-plus-lg me-1"></i>Nueva venta</a>
+          <a th:href="@{/asistencia}" class="btn btn-outline-brand"><i class="bi bi-calendar2-check me-1"></i>Registrar asistencia</a>
+        </div>
+      </div>
+
+      <div class="row g-3 kpi-row">
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card kpi-amber">
+            <i class="bi bi-cash-stack"></i>
+            <div><span class="kpi-value" th:text="${'S/ ' + #numbers.formatDecimal(ventasHoy, 1, 2)}">S/ 0.00</span><span class="kpi-label">Ventas registradas (pagadas)</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card kpi-teal">
+            <i class="bi bi-receipt"></i>
+            <div><span class="kpi-value" th:text="${cantidadVentas}">0</span><span class="kpi-label">N° de ventas pagadas</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card kpi-blue">
+            <i class="bi bi-people"></i>
+            <div><span class="kpi-value" th:text="${trabajadoresEnTurno} + '/' + ${totalTrabajadoresActivos}">0/0</span><span class="kpi-label">Trabajadores en turno</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card kpi-red">
+            <i class="bi bi-exclamation-triangle"></i>
+            <div><span class="kpi-value" th:text="${productosStockBajo}">0</span><span class="kpi-label">Productos con stock bajo</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-lg-7">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Últimas ventas</h3>
+              <a th:href="@{/ventas/historial}" class="link-more mb-0">Ver historial <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <ul class="activity-list">
+              <li th:each="v : ${ultimasVentas}">
+                <i class="bi bi-cart-check text-amber"></i>
+                <span th:text="${'Venta ' + v.numero + ' — ' + v.clienteNombre + ' — S/ ' + #numbers.formatDecimal(v.total, 1, 2)}">Venta</span>
+                <time th:text="${#temporals.format(v.fecha, 'dd/MM HH:mm')}">--:--</time>
+              </li>
+              <li th:if="${#lists.isEmpty(ultimasVentas)}">
+                <span class="text-muted">Todavía no se han registrado ventas.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="panel">
+            <div class="panel-head"><h3>Alertas de inventario</h3></div>
+            <ul class="worker-list">
+              <li th:each="p : ${productosBajoStock}">
+                <span class="avatar avatar-sm"><i class="bi bi-fuel-pump"></i></span>
+                <div><strong th:text="${p.nombre}">Producto</strong><small th:text="${p.stock + ' ' + p.unidadMedida + ' disponibles'}">stock</small></div>
+                <span class="status-dot" th:classappend="${p.estadoInventario == 'Stock crítico'} ? 'dot-red' : 'dot-amber'"></span>
+              </li>
+              <li th:if="${#lists.isEmpty(productosBajoStock)}">
+                <span class="text-muted small">Todo el inventario está en niveles normales.</span>
+              </li>
+            </ul>
+            <a th:href="@{/inventario}" class="link-more">Ver control de inventario <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-12">
+          <div class="panel">
+            <div class="panel-head"><h3>Accesos rápidos</h3></div>
+            <div class="row g-3">
+              <div class="col-6 col-md-3"><a th:href="@{/ventas/nueva}" class="shortcut-tile"><i class="bi bi-cart-check"></i>Registrar venta</a></div>
+              <div class="col-6 col-md-3"><a th:href="@{/inventario}" class="shortcut-tile"><i class="bi bi-boxes"></i>Ver inventario</a></div>
+              <div class="col-6 col-md-3"><a th:href="@{/trabajadores}" class="shortcut-tile"><i class="bi bi-person-badge"></i>Trabajadores</a></div>
+              <div class="col-6 col-md-3"><a th:href="@{/reportes}" class="shortcut-tile"><i class="bi bi-file-earmark-bar-graph"></i>Reportes</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

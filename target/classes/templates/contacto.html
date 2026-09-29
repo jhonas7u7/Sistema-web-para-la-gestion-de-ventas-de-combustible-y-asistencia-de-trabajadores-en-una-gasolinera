@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar(active=${activePage})}"></aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="main-column">
+    <header th:replace="~{fragments/layout :: topbar(title=${pageTitle}, crumbs=${crumbs})}"></header>
+    <main class="main-content">
+
+      <div th:replace="~{fragments/layout :: alerts}"></div>
+
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="panel h-100">
+            <div class="panel-head"><h3>Información de contacto</h3></div>
+            <ul class="contact-info-list">
+              <li><i class="bi bi-geo-alt"></i><div><strong>Dirección</strong><span>Av. Los Grifos 845, San Martín de Porres, Lima</span></div></li>
+              <li><i class="bi bi-telephone"></i><div><strong>Teléfono</strong><span>(01) 456-7890</span></div></li>
+              <li><i class="bi bi-envelope"></i><div><strong>Correo electrónico</strong><span>contacto@octanogt.com</span></div></li>
+              <li><i class="bi bi-clock"></i><div><strong>Horario de atención</strong><span>Lunes a domingo, 06:00 a 22:00 h</span></div></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="panel h-100">
+            <div class="panel-head"><h3>Escríbenos</h3></div>
+            <form class="row g-3" th:action="@{/contacto}" method="post">
+              <div class="col-md-6">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="nombre" class="form-control" placeholder="Tu nombre completo" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Correo electrónico</label>
+                <input type="email" name="correo" class="form-control" placeholder="correo@ejemplo.com" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Asunto</label>
+                <input type="text" name="asunto" class="form-control" placeholder="Motivo de tu mensaje" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Mensaje</label>
+                <textarea name="mensaje" class="form-control" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-brand"><i class="bi bi-send me-1"></i>Enviar mensaje</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}"></footer>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
