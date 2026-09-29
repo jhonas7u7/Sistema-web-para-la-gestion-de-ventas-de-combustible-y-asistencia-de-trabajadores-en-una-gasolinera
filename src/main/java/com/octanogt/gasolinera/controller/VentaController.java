@@ -38,7 +38,6 @@ public class VentaController {
         this.trabajadorService = trabajadorService;
     }
 
-    /** Permite que el <select> de producto envíe un valor vacío ("— Ninguno —") sin romper el binding de Long. */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Long.class, new CustomNumberEditor(Long.class, true));
@@ -76,7 +75,6 @@ public class VentaController {
             return "redirect:/ventas/nueva";
         }
 
-        // Regla R2: no se puede vender mas de lo disponible en inventario
         for (DetalleVenta d : detalles) {
             Producto p = productoService.buscarPorId(d.getProductoId()).orElse(null);
             if (p != null && p.getStock() < d.getCantidad()) {
@@ -90,7 +88,6 @@ public class VentaController {
         Cliente cliente = clienteService.buscarPorId(ventaForm.getClienteId()).orElse(null);
         Trabajador trabajador = trabajadorService.buscarPorId(ventaForm.getTrabajadorId()).orElse(null);
 
-        // Regla R5: toda venta requiere un trabajador responsable activo
         if (trabajador == null) {
             redirectAttributes.addFlashAttribute("mensajeError",
                     "Debes seleccionar un trabajador responsable para registrar la venta.");

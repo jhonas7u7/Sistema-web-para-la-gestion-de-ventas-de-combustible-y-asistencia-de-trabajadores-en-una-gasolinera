@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-/** Paginas generales: gestion (hub), contacto, publicidad y metricas (vista informativa). */
 @Controller
 public class PaginasController {
 

@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-/**
- * Reportes basicos generados a partir de los datos en memoria.
- * No incluye metricas (fuera del alcance de este avance).
- */
 @Controller
 public class ReporteController {
 
